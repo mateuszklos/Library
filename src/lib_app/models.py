@@ -1,6 +1,7 @@
 from django.db import models
 
 
+# model autora
 class Author(models.Model):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -10,6 +11,7 @@ class Author(models.Model):
         return self.name + " " + self.last_name
 
 
+# dostępne gatunki
 GENRE = {
     (0, 'Action and Adventure'),
     (1, 'Classics'),
@@ -22,14 +24,12 @@ GENRE = {
 }
 
 
+# model książki
 class Book(models.Model):
     title = models.CharField(max_length=50)
-    models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     date = models.DateField()
     genre = models.PositiveSmallIntegerField(default=0, choices=GENRE)
 
     def __str__(self):
         return self.title
-
-
-
