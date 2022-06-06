@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+    {% if object_list|length > 0 %}
         <div class="row">
             <div class="col-xl-4 col-xxl-6">
                 <h1>Internet library catalog</h1>
                 <p class="text-secondary">MyBookStore connects you to the collections of more than 10,000 libraries worldwide</p>
             </div>
-            <div class="col-xxl-6 offset-xxl-0"><label class="form-label" for="searchinput">title or author:</label>
+            <div class="col-xxl-6 offset-xxl-0"><label class="form-label" for="searchinput">search by title:</label>
                 <form action="{% url 'search_results' %}" method="get">
                     <input type="search" name="q" id="searchinput" class="form-control" placeholder="search">
                 </form>
@@ -30,6 +31,11 @@
             </div>
             {% endfor %}
         </div>
+    {% else %}
+    <div class="row">
+        <h3 class="text-center text-secondary">nothing was found</h3>
+    </div>
+    {% endif %}
         {% if object_list|length > 0 %}
             <div class="pagination col" style="margin-top:1rem;">
                 <span class="step-links">

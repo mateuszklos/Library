@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <div class="row">
+            <div class="col-lg-8 col-xl-6 col-xxl-6 offset-lg-2 offset-xl-3 offset-xxl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">create account</h4>
+                        <form method="post">
+                            {% csrf_token %}
+		                    {{ register_form|crispy }}
+                            <div class="btn-group" role="group" style="margin-top:1rem"><button class="btn btn-primary" type="submit">submit</button><button class="btn btn-secondary" type="reset">reset</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

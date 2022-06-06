@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # model autora
 class Author(models.Model):
@@ -30,6 +30,9 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     date = models.DateField()
     genre = models.PositiveSmallIntegerField(default=0, choices=GENRE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True)
+    is_in_list = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
