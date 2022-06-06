@@ -23,8 +23,14 @@
                     <div class="card-body text-truncate">
                         <h4 class="card-title">{{book.title}} ({{book.date.year}})</h4>
                         <h6 class="text-secondary card-subtitle mb-2" style="padding-bottom: 3rem;">{{book.author}}</h6>
-                        {% if user.is_authenticated %}
-                        <a class="card-link" href="{% url 'addtolist' book.id %}" style="text-decoration: none;">add to list</a>
+                                                {% if user.is_authenticated %}
+                            {% if book.user.username != user.username and book.user.username is not null  %}
+                                borrowed by {{book.user.username}}
+                            {% elif book.user.username == user.username %}
+                                borrowed by you
+                            {% else %}
+                                <a class="card-link" href="{% url 'addtolist' book.id %}" style="text-decoration: none;">borrow</a>
+                            {% endif %}
                         {% endif %}
 
                     </div>

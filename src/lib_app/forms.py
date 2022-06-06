@@ -5,6 +5,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Field
 
 
+# formularz tworzenia nowego użytkownika
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
 

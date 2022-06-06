@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # model autora
 class Author(models.Model):
     name = models.CharField(max_length=50)
@@ -31,7 +32,7 @@ class Book(models.Model):
     date = models.DateField()
     genre = models.PositiveSmallIntegerField(default=0, choices=GENRE)
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=True)
+        User, on_delete=models.CASCADE, null=True, blank=True)  # klucz obcy dla usera, dzięki czemu może dodawać książkę do listy
     is_in_list = models.BooleanField(default=False)
 
     def __str__(self):

@@ -37,6 +37,7 @@ class SearchResultsView(ListView):
         return context
 
 
+# rejestracja użytkownika
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -50,6 +51,7 @@ def register_request(request):
     return render(request=request, template_name="register.html", context={"register_form": form})
 
 
+# logowanie użytkownika
 def login_request(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -69,26 +71,32 @@ def login_request(request):
     return render(request=request, template_name="login.html", context={"login_form": form})
 
 
+# wylogowanie
 def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
-    return redirect('books')
+    return redirect('ilogin')
 
 
+# wypożycz książkę (dodaj ją do swojej listy)
 @login_required
 def addtolist(request, id):
-    book = get_object_or_404(Book, pk=id)
+    book = get_object_or_404(Book, pk=id)  # get_object_or_404 - w przypadku braku pozycji, zwróć 'page not found'
+
+    if book.user != request.user and book.user is not None:
+        messages.success(request, 'you cannot borrow/return someone\'s book!')
+        return redirect('books')
 
     if request.method == 'POST':
         book = Book.objects.get(id=id)
-        book.user = request.user
-        book.is_in_list = True
+        book.user = request.user  # pole 'user' w modelu książki zastąp aktualnym użytkownikiem
+        book.is_in_list = True  # pole 'is in list' które świadczy o tym, czy wypożyczona, ustaw na True
         book.save()
         messages.success(request, 'added!')
 
         return redirect('books')
 
-    return render(request, 'add.html', {'book': book})
+    return render(request, 'borrow.html', {'book': book})
 
 
 @login_required
@@ -97,13 +105,14 @@ def removefromlist(request, id):
 
     if request.method == 'POST':
         book = Book.objects.get(id=id)
-        book.is_in_list = False
+        book.user = None  # aktualnego użytkownika książki ustaw na None (w bazie danych - Null)
+        book.is_in_list = False  # pole 'is in list' które świadczy o tym, czy wypożyczona, ustaw na False
         book.save()
         messages.success(request, 'removed!')
 
         return redirect('mylist')
 
-    return render(request, 'remove.html', {'book': book})
+    return render(request, 'return.html', {'book': book})
 
 
 class myListView(ListView):
@@ -117,3 +126,11 @@ class myListView(ListView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(myListView, self).dispatch(*args, **kwargs)
+
+
+def handler404(request, exception):
+    return render(request, '404.html', status=404)
+
+
+def handler500(request):
+    return render(request, '500.html', status=500)

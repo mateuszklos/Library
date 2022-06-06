@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# endpointy całego projektu: dla aplikacji django-admin i lib_app
 urlpatterns = [
     path('', include('lib_app.urls')),
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('admin/', admin.site.urls)
 ]

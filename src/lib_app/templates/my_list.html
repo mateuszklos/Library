@@ -6,10 +6,7 @@
                 <h1>My books</h1>
                 <p class="text-secondary">books you've added to your list</p>
             </div>
-            <div class="col-xxl-6 offset-xxl-0"><label class="form-label" for="searchinput">search by title:</label>
-                <form action="{% url 'search_results' %}" method="get">
-                    <input type="search" name="q" id="searchinput" class="form-control" placeholder="search">
-                </form>
+            <div class="col-xxl-6 offset-xxl-0">
         </div>
         <div class="row">
             <div class="col">
@@ -24,7 +21,7 @@
                         <h4 class="card-title">{{book.title}} ({{book.date.year}})</h4>
                         <h6 class="text-secondary card-subtitle mb-2" style="padding-bottom: 3rem;">{{book.author}}</h6>
                         {% if user.is_authenticated %}
-                        <a class="card-link" href="{% url 'removefromlist' book.id %}" style="text-decoration: none;">remove</a>
+                        <a class="card-link" href="{% url 'removefromlist' book.id %}" style="text-decoration: none;">return</a>
                         {% endif %}
 
                     </div>

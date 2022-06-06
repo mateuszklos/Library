@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%5*(=%qs5bix=j$1uoh93+92y_iu(ze2&g6+fax2^v@g@5=jxm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -123,10 +123,11 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'books'
-LOGOUT_REDIRECT_URL = '/login'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # auto wylogowanie z zamknięciem przeglądarki
 SESSION_COOKIE_AGE = 600  # auto wylogowanie po 600 sekundach
-SESSION_SAVE_EVERY_REQUEST = True  # zapobiega zalogowaniu gdy upłynie 300 sekund
+SESSION_SAVE_EVERY_REQUEST = True  # zapobiega zalogowaniu gdy upływie 300 sekund
