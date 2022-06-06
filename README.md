@@ -38,7 +38,7 @@ Na stronie głównej znajduje się pole z wyszukiwaniem książki po tytule. Wpi
 ## responsywność
 Front end strony został wykonany w Bootstrap Studio. Użycie frameworka bootstrap, oraz poprawne rozmieszczenie elementów, zapewniają poprawne wyświetlanie strony na wszystkich rozdzielczościach urządzeń.
 
-## instalacja
+# instalacja
 
 1. utwórz nowy folder dla
 2. git clone https://github.com/NwayNway/test-repo-789.git
