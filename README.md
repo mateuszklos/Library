@@ -38,3 +38,14 @@ Na stronie głównej znajduje się pole z wyszukiwaniem książki po tytule. Wpi
 ## responsywność
 Front end strony został wykonany w Bootstrap Studio. Użycie frameworka bootstrap, oraz poprawne rozmieszczenie elementów, zapewniają poprawne wyświetlanie strony na wszystkich rozdzielczościach urządzeń.
 
+## instalacja
+
+1. utwórz nowy folder dla
+2. git clone https://github.com/NwayNway/test-repo-789.git
+3. zainstaluj wymagane biblioteki/frameworki zawarte w pliku requirements.txt
+    3.1 pip install django
+    3.2 pip install django-crispy-forms
+4. przejdź do folderu /src
+5. w terminalu użyj komenty python ./manage.py runserver
+6. serwis powinien być dostępny pod adresem http://127.0.0.1:8000/
+
