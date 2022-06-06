@@ -16,7 +16,7 @@ Gdy użytkownik utworzył konto, może się zalogować pod adresem /login. W prz
 
 ## książki
 Serwis zawiera listę książek. Listą tą zarządza administrator, który może dodawać książki i autorów z panelu /admin.
-Użytkownik może wypożyczyć książkę (o ile ktoś wcześniej tego nie zrobił). Książka wypożyczona będzie widnieć wciąż w spisie, ale także w liście wypożyczonych książek na profilu użytkownika. Książka wypożyczona dla innych użytkowników będzie mieć zablokowaną możliwość wypożyczenia, póki wypożyczający jej nie zwróci. Zamiast przycisku 'borrow' będzie wtedy widniał 'borrowed by {użytkownik}. Serwis posiada także zabezpieczenia, które zapobiegają wypożyczanie już zajętych książek. Chcąc w adresie url wypożyczyć zajętą książke, strona zwróci stosowny komunikat.
+Użytkownik może wypożyczyć książkę (o ile ktoś wcześniej tego nie zrobił). Książka wypożyczona będzie widnieć wciąż w spisie, ale także w liście wypożyczonych książek na profilu użytkownika. Książka wypożyczona dla innych użytkowników będzie mieć zablokowaną możliwość wypożyczenia, póki wypożyczający jej nie zwróci. Zamiast przycisku 'borrow' będzie wtedy widniał 'borrowed by {użytkownik}'. Serwis posiada także zabezpieczenia, które zapobiegają wypożyczanie już zajętych książek. Chcąc w adresie url wypożyczyć zajętą książke, strona zwróci stosowny komunikat.
 Model Book odpowiada za książkę i posiada następujące atrybuty:
 * title - tytuł, ciąg znaków z maksymalną długością 50
 * author - autor, klucz obcy do modelu Author z relacją one-to-one
